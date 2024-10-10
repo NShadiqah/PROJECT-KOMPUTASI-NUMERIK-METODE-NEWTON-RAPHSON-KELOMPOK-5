@@ -1,10 +1,9 @@
 Kelompok 5 [Metode Newton Raphson]
 
 Anggota :
-1. Nur Shadiqah        | 2308107010061
-2. Yulli Erisna        | 2308107010015
-3. Maulizar            | 2308107010007
-4. Zalvia Inasya Zulna | 2308107010041
-5. Tasya Maulida       | 2308107010079
-6. Faris Zain As-Shadiq| 2308107010039
- 
+1. Maulizar             |  2308107010007
+2. Yulli Erisna         |  2308107010015
+3. Faris Zain As-Shadiq |  2308107010039
+4. Zalvia Inasya Zulna  |  2308107010041
+5. Nur Shadiqah         |  2308107010061
+6. Tasya Maulida        |  2308107010079
