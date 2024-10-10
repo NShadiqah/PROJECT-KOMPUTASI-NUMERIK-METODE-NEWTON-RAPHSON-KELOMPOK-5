@@ -6,5 +6,5 @@ Anggota :
 3. Maulizar            | 2308107010007
 4. Zalvia Inasya Zulna | 2308107010041
 5. Tasya Maulida       | 2308107010079
-6. FAris Zain As-Shadiq| 2308107010039
+6. Faris Zain As-Shadiq| 2308107010039
  
