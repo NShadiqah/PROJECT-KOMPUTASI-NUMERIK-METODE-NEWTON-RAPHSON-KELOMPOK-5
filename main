@@ -1,38 +1,23 @@
+import streamlit as st
+
+# Fungsi f(x)
 def f(x):
     """
     Fungsi f(x) yang akan dicari akarnya menggunakan Metode Newton-Raphson.
-    
-    Args:
-    x : float : nilai input fungsi
-    
-    Returns:
-    float : hasil dari fungsi f(x)
     """
     return x**3 - 4*x + 1  # Contoh fungsi f(x)
 
+# Fungsi turunan f'(x)
 def f_prime(x):
     """
-    Fungsi turunan dari f(x), yaitu f'(x).
-    
-    Args:
-    x : float : nilai input fungsi
-    
-    Returns:
-    float : hasil dari turunan f'(x)
+    Fungsi turunan dari f(x).
     """
     return 3*x**2 - 4  # Contoh turunan fungsi f(x)
 
+# Metode Newton-Raphson
 def newton_raphson(x0, e, n):
     """
     Metode Newton-Raphson untuk mencari akar dari fungsi f(x).
-    
-    Parameters:
-    x0 : float : nilai awal tebakan akar
-    e : float : toleransi error
-    n : int : jumlah maksimum iterasi
-    
-    Returns:
-    float : akar dari fungsi f(x) jika ditemukan
     """
     for i in range(n):
         fx0 = f(x0)  # Hitung nilai fungsi pada titik x0
@@ -40,7 +25,7 @@ def newton_raphson(x0, e, n):
         
         # Menghindari pembagian dengan nol
         if fpx0 == 0:
-            print("Turunan nol, tidak bisa melanjutkan!")
+            st.error("Turunan nol, tidak bisa melanjutkan!")
             return None
         
         # Newton-Raphson: x1 = x0 - f(x0)/f'(x0)
@@ -48,23 +33,26 @@ def newton_raphson(x0, e, n):
         
         # Cek apakah hasilnya sudah mendekati akar sesuai toleransi error
         if abs(x1 - x0) < e:
-            print(f"Akar ditemukan: {x1} pada iterasi ke-{i + 1}")
+            st.success(f"Akar ditemukan: {x1} pada iterasi ke-{i + 1}")
             return x1
         
         # Update nilai x0 dengan hasil x1
         x0 = x1
     
-    print("Akar tidak ditemukan dalam jumlah iterasi maksimum.")
+    st.error("Akar tidak ditemukan dalam jumlah iterasi maksimum.")
     return None
 
-# Parameter untuk menjalankan metode Newton-Raphson
-x0 = 2.0  # Nilai awal tebakan
-e = 0.0001  # Toleransi error
-n = 100  # Iterasi maksimum
+# Membuat tampilan interaktif menggunakan Streamlit
+st.title('Metode Newton-Raphson')
+st.write('Aplikasi ini menggunakan metode Newton-Raphson untuk mencari akar dari fungsi f(x).')
 
-# Memanggil fungsi untuk mencari akar
-akar = newton_raphson(x0, e, n)
+# Input dari pengguna
+x0 = st.number_input('Masukkan nilai awal tebakan akar (x0):', value=2.0)
+e = st.number_input('Masukkan nilai toleransi error (e):', value=0.0001, format="%.5f")
+n = st.number_input('Masukkan jumlah maksimum iterasi (n):', value=100, step=1)
 
-# Jika akar ditemukan, tampilkan nilainya
-if akar is not None:
-    print(f"Akar dari fungsi adalah: {akar}")
+# Tombol eksekusi
+if st.button('Hitung Akar'):
+    akar = newton_raphson(x0, e, n)
+    if akar is not None:
+        st.write(f"Akar dari fungsi adalah: {akar}")
