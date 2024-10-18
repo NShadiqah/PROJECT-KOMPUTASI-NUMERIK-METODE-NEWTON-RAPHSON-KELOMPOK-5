@@ -1,6 +1,6 @@
 def f(x):
     """
-    Fungsi f(x) yang akan dicari akarnya menggunakan metode Newton-Raphson.
+    Fungsi f(x) yang akan dicari akarnya menggunakan Metode Newton-Raphson.
     
     Args:
     x : float : nilai input fungsi
