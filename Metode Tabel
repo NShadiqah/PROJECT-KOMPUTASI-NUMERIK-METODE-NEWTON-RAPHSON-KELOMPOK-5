@@ -1,0 +1,77 @@
+import streamlit as st
+import pandas as pd
+
+# Fungsi f(x)
+def f(x):
+    """
+    Fungsi f(x) yang akan dicari akarnya menggunakan Metode Newton-Raphson.
+    """
+    return x**3 - 4*x + 1  # Contoh fungsi f(x)
+
+# Fungsi turunan f'(x)
+def f_prime(x):
+    """
+    Fungsi turunan dari f(x).
+    """
+    return 3*x**2 - 4  # Contoh turunan fungsi f(x)
+
+# Metode Newton-Raphson dengan hasil per iterasi
+def newton_raphson(x0, e, n):
+    """
+    Metode Newton-Raphson untuk mencari akar dari fungsi f(x), dengan hasil per iterasi.
+    """
+    # Simpan hasil setiap iterasi dalam list of dictionaries
+    results = []
+    
+    for i in range(n):
+        fx0 = f(x0)  # Hitung nilai fungsi pada titik x0
+        fpx0 = f_prime(x0)  # Hitung nilai turunan fungsi pada titik x0
+        
+        # Menghindari pembagian dengan nol
+        if fpx0 == 0:
+            st.error("Turunan nol, tidak bisa melanjutkan!")
+            return None, results
+        
+        # Newton-Raphson: x1 = x0 - f(x0)/f'(x0)
+        x1 = x0 - fx0 / fpx0
+        
+        # Menyimpan hasil iterasi ke dalam tabel
+        results.append({
+            'Iterasi': i + 1,
+            'x_n': x0,
+            'f(x_n)': fx0,
+            '|x_{n+1} - x_n|': abs(x1 - x0)
+        })
+        
+        # Cek apakah hasilnya sudah mendekati akar sesuai toleransi error
+        if abs(x1 - x0) < e:
+            st.success(f"Akar ditemukan: {x1} pada iterasi ke-{i + 1}")
+            return x1, results
+        
+        # Update nilai x0 dengan hasil x1
+        x0 = x1
+    
+    st.error("Akar tidak ditemukan dalam jumlah iterasi maksimum.")
+    return None, results
+
+# Membuat tampilan interaktif menggunakan Streamlit
+st.title('Metode Newton-Raphson dengan Tampilan Tabel')
+st.write('Aplikasi ini menggunakan metode Newton-Raphson untuk mencari akar dari fungsi f(x) dan menampilkan hasil tiap iterasi dalam bentuk tabel.')
+
+# Input dari pengguna
+x0 = st.number_input('Masukkan nilai awal tebakan akar (x0):', value=2.0)
+e = st.number_input('Masukkan nilai toleransi error (e):', value=0.0001, format="%.5f")
+n = st.number_input('Masukkan jumlah maksimum iterasi (n):', value=100, step=1)
+
+# Tombol eksekusi
+if st.button('Hitung Akar'):
+    akar, results = newton_raphson(x0, e, n)
+    
+    # Jika akar ditemukan atau iterasi dijalankan
+    if results:
+        # Menampilkan hasil dalam bentuk tabel
+        df = pd.DataFrame(results)
+        st.table(df)
+
+    if akar is not None:
+        st.write(f"Akar dari fungsi adalah: {akar}")
