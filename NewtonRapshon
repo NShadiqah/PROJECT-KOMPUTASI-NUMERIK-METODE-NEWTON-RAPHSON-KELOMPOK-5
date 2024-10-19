@@ -5,6 +5,9 @@ from sympy import symbols, diff
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import time
+import sys
+import os
 
 def f(x, persamaan):
     return eval(persamaan)
@@ -77,8 +80,37 @@ def plot_function(persamaan, x_values):
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.pack()
 
+def animasi_loading(durasi):
+    animasi = "|/-\\"
+    for _ in range(durasi):
+        for frame in animasi:
+            sys.stdout.write('\rLoading' + frame)
+            sys.stdout.flush()
+            time.sleep(0.2)
+    print("\rSelesai!        ")
+
+def tampilkan_halaman_start():
+    print("\033[94m=" * 84)
+    print("\t     +++++~~~~>\033[95mIMPLEMENTASI METODE NEWTON RAPHSON\033[0m <~~~~+++++")
+    print("\033[94m=" * 84)
+    input("\033[96mTekan ENTER untuk memulai... \033[0m")
+
+def tampilkan_halaman_loading():
+    print("\nMemulai aplikasi...")
+    for i in range(3, 0, -1):
+        print(f"Loading dalam {i}...")
+        time.sleep(1)
+    animasi_loading(5)  # Menampilkan animasi loading
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def start_application():
+    tampilkan_halaman_start()
+    tampilkan_halaman_loading()
+    root.deiconify()  # Menampilkan window Tkinter
+
 root = tk.Tk()
 root.title("Kalkulator Metode Newton Raphson dengan Grafik")
+root.withdraw()  # Menyembunyikan window Tkinter sementara
 
 tk.Label(root, text="Masukkan persamaan (f(x)):").pack()
 entry_persamaan = tk.Entry(root)
@@ -102,4 +134,5 @@ tree.heading("F(Xn)", text="F(Xn)")
 tree.heading("F'(Xn)", text="F'(Xn)")
 tree.pack()
 
+start_application()
 root.mainloop()
