@@ -1,10 +1,8 @@
-# cara jalanin
-# streamlit run nama_file.apy
-
 import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import base64
 
 # Fungsi untuk menghitung f(x) berdasarkan persamaan yang dimasukkan
 def f(x, persamaan):
@@ -58,6 +56,35 @@ def plot_function(persamaan, x_values):
     plt.title('Grafik Fungsi dan Iterasi Newton-Raphson')
     st.pyplot(plt)
 
+# Fungsi untuk memuat latar belakang dari file lokal
+def load_background_image(image_path):
+    with open(image_path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+# Fungsi untuk menambahkan latar belakang
+def add_bg_from_local(bg_image):
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{bg_image}");
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Path file gambar latar belakang
+bg_image_path = "wp.jpg"  # Pastikan file ini ada di folder yang sama
+
+# Memuat gambar latar belakang
+bg_image = load_background_image(bg_image_path)
+
+# Menambahkan gambar latar belakang
+add_bg_from_local(bg_image)
+
 # Bagian aplikasi Streamlit
 st.title("Metode Newton-Raphson dengan Streamlit")
 
@@ -78,4 +105,3 @@ if st.button("Hitung"):
 
     # Menampilkan grafik f(x) dan iterasi
     plot_function(persamaan, x_values)
-    
