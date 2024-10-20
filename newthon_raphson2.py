@@ -1,3 +1,6 @@
+# cara jalanin
+# streamlit run nama_file.apy
+
 import streamlit as st
 import numpy as np
 import pandas as pd
