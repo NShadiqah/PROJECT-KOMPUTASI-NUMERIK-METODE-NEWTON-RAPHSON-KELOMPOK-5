@@ -1,7 +1,9 @@
 # PROJECT KOMPUTASI NUMERIK METODE NEWTON-RAPHSON KELOMPOK 5
 
 ## Deskripsi
-Ini adalah proyek untuk menyelesaikan permasalahan numerik menggunakan metode Newton-Raphson. 
+- Metode Newton-Raphson adalah teknik iteratif yang kuat dan sering digunakan untuk menemukan solusi perkiraan dari persamaan nonlinear. Proyek ini berfokus pada penggunaan metode tersebut untuk mencari akar dari fungsi yang diberikan.
+
+- Ini adalah proyek untuk menyelesaikan permasalahan numerik menggunakan metode Newton-Raphson. 
 Proyek ini dibuat oleh Kelompok 5 sebagai bagian dari tugas mata kuliah Praktikum Komputasi Numerik.
 
 ## Anggota Kelompok 5:
@@ -16,4 +18,6 @@ Proyek ini dibuat oleh Kelompok 5 sebagai bagian dari tugas mata kuliah Praktiku
 - Menghitung akar dari fungsi nonlinear menggunakan metode iteratif Newton-Raphson.
 - Menyediakan input fungsi dan nilai awal.
 - Menghasilkan output akar dari fungsi yang diberikan.
+- Input fungsi nonlinear dari pengguna.
+- Tebakan awal untuk memulai proses iterasi.
 
