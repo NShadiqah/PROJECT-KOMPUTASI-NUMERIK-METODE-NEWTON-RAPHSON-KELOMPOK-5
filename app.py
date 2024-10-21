@@ -20,7 +20,7 @@ st.title("Metode Newton-Raphson dengan Streamlit")
 # Input dari pengguna
 persamaan = st.text_input("Masukkan persamaan (contoh: x*2 - 4*x + 3):", "x*2 - 4*x + 3")
 tebakan_awal = st.number_input("Masukkan tebakan awal (x0):", value=1.0)
-toleransi_e = st.number_input("Masukkan toleransi error (e):", value=1e-5)
+toleransi_e = st.number_input("Masukkan toleransi error (e):", value=0.001, format="%.3f")
 
 # Tombol untuk memulai kalkulasi
 if st.button("Hitung"):
