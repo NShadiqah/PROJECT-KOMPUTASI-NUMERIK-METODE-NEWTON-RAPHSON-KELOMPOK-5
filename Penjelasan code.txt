@@ -1,0 +1,67 @@
+PENJELASAN CODE MAIN
+
+1. Import Library
+  Pada bagian awal, beberapa library diimpor untuk mengimplementasikan fungsionalitas aplikasi:
+Streamlit (st): Library untuk membangun aplikasi web yang interaktif.
+NumPy (np): Digunakan untuk operasi matematika dan array numerik, seperti membuat titik-titik pada grafik.
+Pandas (pd): Digunakan untuk memanipulasi data dalam bentuk tabel (DataFrame) untuk menampilkan hasil iterasi.
+Matplotlib (plt): Library yang digunakan untuk membuat visualisasi atau grafik.
+Base64: Digunakan untuk encoding gambar ke format base64 agar bisa dimuat sebagai latar belakang di Streamlit.
+
+2. Fungsi Menghitung Nilai f(x)
+  Fungsi ini bertujuan untuk menghitung nilai fungsi matematika f(x) berdasarkan persamaan yang diberikan oleh pengguna.
+eval(persamaan): Mengubah string persamaan menjadi ekspresi Python dan menjalankannya. Misalnya, jika pengguna memasukkan persamaan "x**2 - 4*x + 3", fungsi ini akan menghitung hasilnya untuk nilai x tertentu.
+Input pengguna berupa persamaan dievaluasi secara dinamis dengan fungsi eval.
+
+3. Fungsi Menghitung Turunan Numerik f(x)
+  Fungsi ini menghitung turunan dari f(x) secara numerik menggunakan metode finite difference, yaitu menghitung turunan sebagai selisih antara nilai fungsi pada dua titik yang sangat berdekatan.
+Turunan ini dibutuhkan untuk iterasi dalam metode Newton-Raphson.
+
+4. Metode Newton-Raphson
+  Metode Newton-Raphson adalah metode iteratif yang digunakan untuk menemukan akar suatu fungsi nonlinear. Algoritma dasarnya adalah: 
+Input parameter:
+x0: Nilai tebakan awal yang dimasukkan pengguna.
+tol_e: Toleransi kesalahan, yaitu seberapa dekat hasil harus mendekati nol sebelum iterasi dihentikan.
+persamaan: Persamaan yang diinput oleh pengguna.
+Proses iterasi:
+Di setiap iterasi, dihitung nilai fungsi f(x) dan turunan f'(x) pada titik x saat itu.
+Jika nilai fungsi f(x) mendekati nol (dalam batas toleransi), iterasi dihentikan, dan akar dianggap telah ditemukan.
+Nilai hasil dari setiap iterasi disimpan dalam list results untuk ditampilkan sebagai tabel di aplikasi.
+Output:
+Results: Data yang mencakup nilai x, f(x), dan f'(x) pada setiap iterasi.
+x_values: Daftar nilai x yang digunakan di setiap iterasi.
+Iterasi terakhir: Menginformasikan iterasi ke berapa akar ditemukan.
+Hasil akar: Nilai x yang merupakan akar dari persamaan.
+
+5. Fungsi untuk Menampilkan Grafik
+  Fungsi ini menampilkan grafik dari fungsi f(x) serta iterasi yang dilakukan dalam metode Newton-Raphson.
+Komponen Utama:
+np.linspace(): Digunakan untuk menghasilkan sejumlah titik x dalam rentang tertentu (antara nilai minimum dan maksimum dari daftar x_values). Ini memungkinkan kita untuk menggambar grafik yang halus.
+Fungsi f(x) dihitung di sepanjang titik-titik ini untuk menghasilkan grafik dari fungsi tersebut.
+Garis horizontal pada y = 0 ditambahkan untuk menandai letak sumbu x, dan digunakan sebagai referensi untuk akar.
+Setiap iterasi dari Newton-Raphson digambarkan sebagai titik hijau pada grafik, sementara titik akhir (akar) ditandai dengan warna merah.
+plt.annotate() menambahkan label pada setiap titik iterasi untuk memudahkan interpretasi.
+
+6. Latar Belakang (Background Image)
+  Aplikasi juga memungkinkan pengguna menambahkan gambar latar belakang:
+load_background_image(): Fungsi ini memuat gambar dari file lokal dan mengonversinya ke format base64 untuk digunakan sebagai latar belakang di aplikasi.
+add_bg_from_local(): Menggunakan CSS untuk menambahkan gambar latar belakang ke halaman Streamlit.
+
+7. Antarmuka Aplikasi dengan Streamlit
+  Aplikasi memiliki antarmuka pengguna yang dibangun menggunakan Streamlit, termasuk:
+Judul aplikasi: Menampilkan judul “Metode Newton-Raphson dengan Streamlit” di bagian atas halaman.
+Input pengguna:
+Pengguna dapat memasukkan persamaan nonlinear dalam bentuk string, misalnya "x**2 - 4*x + 3".
+Tebakan awal dan toleransi error juga diinput oleh pengguna melalui widget interaktif.
+Tombol "Hitung":
+Ketika tombol ini ditekan, aplikasi akan menjalankan perhitungan Newton-Raphson dan menampilkan hasil dalam tabel serta grafik.
+
+8. Output Aplikasi
+  Setelah proses perhitungan selesai, aplikasi akan menampilkan:
+Tabel iterasi: Menampilkan hasil setiap iterasi, termasuk nilai x, f(x), dan turunan f'(x).
+Hasil akhir: Menyajikan nilai akar yang ditemukan setelah iterasi terakhir.
+Grafik: Memvisualisasikan fungsi f(x), titik-titik iterasi, dan akar yang ditemukan.
+Kesimpulan
+Aplikasi ini dirancang untuk melakukan perhitungan akar dari suatu fungsi nonlinear menggunakan Metode Newton-Raphson. Pengguna dapat memasukkan persamaan, tebakan awal, dan toleransi error, dan aplikasi akan menghitung akar serta menampilkan hasilnya dalam bentuk tabel dan grafik yang mudah dipahami. Aplikasi ini juga memungkinkan penggunaan gambar latar belakang untuk mempercantik tampilan.
+
+
