@@ -1,8 +1,7 @@
 Kelompok 5 [Metode Newton Raphson]
-Metode Newton-Raphson adalah teknik numerik untuk menemukan akar dari suatu fungsi non-linear
-dengan iterasi. Metode ini menggunakan nilai awal tebakan dan menghitung nilai akar yang lebih
-akurat dengan menggunakan turunan dari fungsi tersebut. Proses berlanjut hingga hasil konvergen
-atau mendekati nol.
+
+Metode Newton-Raphson adalah teknik numerik yang efektif untuk menemukan akar dari fungsi non-linear melalui proses iterasi. Dengan memulai dari sebuah tebakan awal, metode ini menghitung akar yang lebih akurat menggunakan turunan fungsi yang relevan. Proses ini terus berlanjut hingga hasil yang diperoleh mendekati nol, menandakan bahwa akar telah ditemukan. Dalam proyek ini, kami akan menerapkan metode ini untuk menghasilkan nilai akar yang lebih tepat dengan memanfaatkan tebakan awal dan analisis turunan fungsi.
+
 Anggota :
 1. Maulizar             |  2308107010007
 2. Yulli Erisna         |  2308107010015
