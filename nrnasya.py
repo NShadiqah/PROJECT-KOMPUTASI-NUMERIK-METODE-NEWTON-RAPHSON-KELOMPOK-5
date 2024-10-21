@@ -37,7 +37,7 @@ def metode_Newton_Raphson(x0, tol_e, persamaan):
 
     return results, x_values
 
-# Fungsi untuk menampilkan grafik
+# Fungsi untuk menampilkan  grafik:
 def plot_function(persamaan, x_values):
     x = np.linspace(min(x_values) - 1, max(x_values) + 1, 1000)
     y = [f(xi, persamaan) for xi in x]
