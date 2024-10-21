@@ -47,7 +47,7 @@ while True:
     # Memperbarui nilai x menggunakan rumus Newton-Raphson: x = x - f(x) / f'(x)
     x = x - fx / dfx
 
-    # Menambahkan nilai x yang baru ke dalam list 'x_values' untuk melacak perubahan nilai x
+    # Menambahkan nilai x yang baru ke dalam list 'x_values' untuk melacak nilai x
     x_values.append(x)
     
     # Menambah nilai iterasi sebanyak 1
