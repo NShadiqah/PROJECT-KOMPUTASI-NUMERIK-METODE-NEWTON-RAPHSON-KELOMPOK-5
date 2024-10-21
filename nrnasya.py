@@ -8,7 +8,7 @@ import base64
 def f(x, persamaan):
     return eval(persamaan)
 
-# Fungsi untuk menghitung turunan f(x) :
+# Fungsi untuk menghitung turunan f(x) 
 def df(x, persamaan):
     h = 1e-5
     return (f(x + h, persamaan) - f(x, persamaan)) / h
