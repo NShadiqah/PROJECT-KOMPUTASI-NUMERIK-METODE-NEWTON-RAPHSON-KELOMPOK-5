@@ -1,4 +1,3 @@
-
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -21,41 +20,39 @@ def metode_Newton_Raphson(x0, tol_e, persamaan):
     results = []
     x_values = [x]
 
-   # Memulai loop tak terbatas untuk iterasi metode Newton-Raphson
-while True:
-    # Menghitung nilai fungsi f(x) menggunakan nilai x saat ini dan persamaan
-    fx = f(x, persamaan)
-    
-    # Menghitung turunan dari fungsi f'(x) menggunakan nilai x saat ini dan persamaan
-    dfx = df(x, persamaan)
+    # Memulai loop tak terbatas untuk iterasi metode Newton-Raphson
+    while True:
+        # Menghitung nilai fungsi f(x) menggunakan nilai x saat ini dan persamaan
+        fx = f(x, persamaan)
 
-    # Menambahkan hasil iterasi saat ini (nomor iterasi, nilai x, f(x), dan f'(x)) ke dalam list 'results'
-    results.append({"Iterasi": iterasi + 1, "Xn": x, "F(Xn)": fx, "F'(Xn)": dfx})
+        # Menghitung turunan dari fungsi f'(x) menggunakan nilai x saat ini dan persamaan
+        dfx = df(x, persamaan)
 
-    # Memeriksa apakah nilai absolut dari f(x) lebih kecil dari tingkat toleransi (tol_e)
-    # Jika ya, artinya akar telah ditemukan (f(x) mendekati nol)
-    if abs(fx) < tol_e:
-        # Menyimpan nilai x saat ini sebagai akar (hasil)
-        hasil = x
-        
-        # Menambahkan hasil akhir (akar ditemukan) ke dalam list 'results'
-        # Nilai turunan (f'(x)) dikosongkan karena tidak lagi diperlukan
-        results.append({"Iterasi": "Akar", "Xn": hasil, "F(Xn)": f(hasil, persamaan), "F'(Xn)": ""})
-        
-        # Keluar dari loop karena akar sudah ditemukan
-        break
+        # Menambahkan hasil iterasi saat ini (nomor iterasi, nilai x, f(x), dan f'(x)) ke dalam list 'results'
+        results.append({"Iterasi": iterasi + 1, "Xn": x, "F(Xn)": fx, "F'(Xn)": dfx})
 
-    # Memperbarui nilai x menggunakan rumus Newton-Raphson: x = x - f(x) / f'(x)
-    x = x - fx / dfx
+        # Memeriksa apakah nilai absolut dari f(x) lebih kecil dari tingkat toleransi (tol_e)
+        if abs(fx) < tol_e:
+            # Menyimpan nilai x saat ini sebagai akar (hasil)
+            hasil = x
 
-    # Menambahkan nilai x yang baru ke dalam list 'x_values' untuk melacak perubahan nilai x
-    x_values.append(x)
-    
-    # Menambah nilai iterasi sebanyak 1
-    iterasi += 1
+            # Menambahkan hasil akhir (akar ditemukan) ke dalam list 'results'
+            results.append({"Iterasi": "Akar", "Xn": hasil, "F(Xn)": f(hasil, persamaan), "F'(Xn)": ""})
 
-# Mengembalikan dua nilai: hasil (semua iterasi dan perhitungan) dan nilai-nilai x yang dilacak selama proses
-return results, x_values
+            # Keluar dari loop karena akar sudah ditemukan
+            break
+
+        # Memperbarui nilai x menggunakan rumus Newton-Raphson: x = x - f(x) / f'(x)
+        x = x - fx / dfx
+
+        # Menambahkan nilai x yang baru ke dalam list 'x_values' untuk melacak perubahan nilai x
+        x_values.append(x)
+
+        # Menambah nilai iterasi sebanyak 1
+        iterasi += 1
+
+    # Mengembalikan dua nilai: hasil (semua iterasi dan perhitungan) dan nilai-nilai x yang dilacak selama proses
+    return results, x_values
 
 # Fungsi untuk menampilkan grafik
 def plot_function(persamaan, x_values):
@@ -125,5 +122,3 @@ if st.button("Hitung"):
 
     # Menampilkan grafik f(x) dan iterasi
     plot_function(persamaan, x_values)
-
-# Untuk run di terminal, pakai command [streamlit run main.py]
