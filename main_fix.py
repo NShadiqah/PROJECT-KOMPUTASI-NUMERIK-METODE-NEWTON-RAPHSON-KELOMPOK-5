@@ -1,4 +1,3 @@
-
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -36,10 +35,10 @@ def metode_Newton_Raphson(x0, tol_e, persamaan):
         x_values.append(x)
         iterasi += 1
 
-    return results, x_values
+    return results, x_values, iterasi, hasil
 
 # Fungsi untuk menampilkan grafik
-def plot_function(persamaan, x_values):
+def plot_function(persamaan, x_values, iterasi_akhir, akar):
     x = np.linspace(min(x_values) - 1, max(x_values) + 1, 1000)
     y = [f(xi, persamaan) for xi in x]
 
@@ -48,6 +47,9 @@ def plot_function(persamaan, x_values):
     plt.axhline(y=0, color='r', linestyle='--')
     plt.scatter(x_values, [f(xi, persamaan) for xi in x_values], color='green', label='Iterasi')
 
+    # Menampilkan akar pada grafik
+    plt.scatter([akar], [0], color='red', label=f'Akar ditemukan di iterasi {iterasi_akhir}')
+    
     for i, txt in enumerate(range(1, len(x_values) + 1)):
         plt.annotate(f'x{txt}', (x_values[i], f(x_values[i], persamaan)))
 
@@ -92,17 +94,22 @@ st.title("Metode Newton-Raphson dengan Streamlit")
 # Input dari pengguna
 persamaan = st.text_input("Masukkan persamaan (contoh: x*2 - 4*x + 3):", "x*2 - 4*x + 3")
 tebakan_awal = st.number_input("Masukkan tebakan awal (x0):", value=1.0)
-toleransi_e = st.number_input("Masukkan toleransi error (e):", value=1e-5, format="%.10f")  # Memungkinkan input desimal
+
+# Input toleransi error dengan format float
+toleransi_e = st.number_input("Masukkan toleransi error (e):", value=0.00001, format="%.10f")
 
 # Tombol untuk memulai kalkulasi
 if st.button("Hitung"):
     with st.spinner('Menghitung akar...'):
-        results, x_values = metode_Newton_Raphson(tebakan_awal, toleransi_e, persamaan)
+        results, x_values, iterasi_akhir, hasil_akar = metode_Newton_Raphson(tebakan_awal, toleransi_e, persamaan)
     
     # Menampilkan tabel hasil iterasi
     results_df = pd.DataFrame(results)
     st.write("### Hasil Iterasi Newton-Raphson:")
     st.dataframe(results_df)  # Menampilkan dalam bentuk tabel interaktif
 
+    # Menampilkan informasi iterasi terakhir dan nilai akar yang ditemukan
+    st.write(f"**Akar ditemukan pada iterasi ke-{iterasi_akhir}, dengan nilai akar: {hasil_akar:.6f}**")
+
     # Menampilkan grafik f(x) dan iterasi
-    plot_function(persamaan, x_values)
+    plot_function(persamaan, x_values, iterasi_akhir, hasil_akar)
