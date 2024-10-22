@@ -1,6 +1,6 @@
 Kelompok 5 [Metode Newton Raphson]
 
-Anggota :
+Anggota kelompok :
 1. Maulizar             |  2308107010007
 2. Yulli Erisna         |  2308107010015
 3. Faris Zain As-Shadiq |  2308107010039
